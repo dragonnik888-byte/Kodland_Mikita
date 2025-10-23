@@ -1,0 +1,14 @@
+meme_dict = { }
+
+for i in range(5):
+    word = input("Wpisz słowo, które chcesz dodać: ")
+    value = input("Wpisz tłumaczenie tego słowa")
+    meme_dict[word] = value
+
+word = input("Wpisz słowo, którego nie rozumiesz (używaj wielkich liter!): ")
+if word in meme_dict.keys():
+    print(meme_dict[word])
+else:
+    print("nie ma tego slowa")
+
+print(meme_dict)

@@ -1,0 +1,62 @@
+import discord
+import random
+
+from datetime import datetime
+from discord.ext import commands
+
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Login how {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hi this is a {bot.user}')
+@bot.command()
+async def frog(ctx, x: int):
+    await ctx.send(f':frog:' * x)
+@bot.command()
+async def smile(ctx, x = 4):
+    await ctx.send(f':smiley:' * x)
+@bot.command()
+async def password(ctx, lenght: int=10):
+    symbols = 'xdtcyf7gy\hiujokmlfnjvebysgau8'
+    password = ''
+    for i in range(lenght):
+        password += random.choice(symbols)
+    await ctx.send(f'Genersted password: {password}')
+@bot.command()
+async def time(ctx):
+    now = datetime.now()
+    weeday = now.strftime('%A')
+    embed = discord.Embed(
+        title = '⌛ Time',
+        description=(
+            f'Date: {now.strftime("%d.%n.%Y")}\n'
+            f'Day of weekend: {weeday}\n'
+            f'Hour: {now.strftime("%H:%M:%S")}\n'),
+        color=discord.Color.blue()
+    )
+    await ctx.send(embed=embed) 
+@bot.command()
+async def mnozenie(ctx, x: int, y: int):
+    await ctx.send(x * y)
+@bot.command()
+async def dzielenie(ctx, x: int, y: int):
+    await ctx.send(x / y)
+@bot.command()
+async def dodawanie(ctx, x: int, y: int):
+    await ctx.send(x + y)
+@bot.command()
+async def odejmowanie(ctx, x: int, y: int):
+    await ctx.send(x - y)
+
+
+
+
+bot.run('MTQzNjAyOTI0OTY2NzcyNzQ0MA.GEgCbe.PAFDp9YI8KQQHQlH1l7Jr9a0lshT7k_VeL88O4')

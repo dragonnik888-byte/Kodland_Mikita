@@ -1,0 +1,166 @@
+import discord
+import random
+import os
+
+from datetime import datetime
+from discord.ext import commands
+
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Login how {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hi this is a {bot.user}')
+@bot.command()
+async def frog(ctx, x: int):
+    await ctx.send(f':frog:' * x)
+@bot.command()
+async def smile(ctx, x = 4):
+    await ctx.send(f':smiley:' * x)
+@bot.command()
+async def password(ctx, lenght: int=10):
+    symbols = 'xdtcyf7gy\hiujokmlfnjvebysgau812345609!@#$%^&*()_+-='
+    password = ''
+    for i in range(lenght):
+        password += random.choice(symbols)
+    await ctx.send(f'Genersted password: {password}')
+@bot.command()
+async def time(ctx):
+    now = datetime.now()
+    weeday = now.strftime('%A')
+    embed = discord.Embed(
+        title = '⌛ Time',
+        description=(
+            f'Date: {now.strftime("%d.%m.%Y")}\n'
+            f'Day of weekend: {weeday}\n'
+            f'Hour: {now.strftime("%H:%M:%S")}\n'),
+        color=discord.Color.blue()
+    )
+    await ctx.send(embed=embed) 
+@bot.command()
+async def mnozenie(ctx, x: int, y: int):
+    await ctx.send(x * y)
+@bot.command()
+async def dzielenie(ctx, x: int, y: int):
+    await ctx.send(x / y)
+@bot.command()
+async def dodawanie(ctx, x: int, y: int):
+    await ctx.send(x + y)
+@bot.command()
+async def odejmowanie(ctx, x: int, y: int):
+    await ctx.send(x - y)
+
+@bot.command()
+async def mem(ctx):
+    with open('mem1.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+@bot.command()
+async def ran_mem(ctx):
+    image_name = os.listdir('images')
+    with open(f"images/{random.choice(image_name)}", 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file = picture)
+
+import requests
+def get_duck_image_url():
+    url = 'https://random-d.uk/api/random'
+    response = requests.get(url)
+    data = response.json()
+    return data['url']
+
+@bot.command()
+async def duck(ctx):
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+def get_fox_image_url():
+    url = 'https://randomfox.ca/floof/'
+    response = requests.get(url)
+    data = response.json()
+    return data['url']
+
+@bot.command()
+async def fox(ctx):
+    image_url = get_fox_image_url()
+    await ctx.send(image_url)
+
+def get_wolf_image_url():
+    url = 'https://random.dog/woof.json'
+    response = requests.get(url)
+    data = response.json()
+    return data['url']
+@bot.command()
+async def wolf(ctx):
+    image_url = get_wolf_image_url()
+    await ctx.send(image_url)
+
+@bot.command()
+async def craft(ctx):
+    craft_ideas = [
+        "Zrub branzoletke z koralikuw",
+        'Papierowy kwiatek',
+        'Rencznie malowane kaminie',
+        'Figurki z gliny',
+        'Ozdoby z recyklingu',
+        'kolarz z czastopisem'
+    ]
+    craft_idea = random.choice(craft_ideas)
+    await ctx.send(f"Pomysl na kraft {craft_idea}")
+    
+@bot.command()
+async def sort(ctx, produkt):
+    sort_smieci = {
+        'plastik': ['butelki', 'torebki', 'opakowania'],
+        'szklo': ['ekran', 'sloiki', 'szklanki'],
+        'BIO': ['reszki', 'skorupki', 'liscie'],
+    }
+
+    for key, value in sort_smieci.items():
+        if produkt in value:
+            await ctx.send(f'Wrzuc do pojemnika {key}')
+            return
+        else:
+            await ctx.send(f'Nie wiem gdzie to wyrzucic')
+
+@bot.command()
+async def decompose(ctx, produkt):
+    czas_rozkladu = {
+        'plastik': '1000 lat',
+        'szklo': '1000 lat',
+        'bio': '2 tyg.',
+        'papier': '2-5 mies.',
+        'metal': '100 lat',
+        'guma': '100 lat'
+        }
+
+    if produkt in czas_rozkladu.keys():
+        await ctx.send(f'Czas rozkladu {produkt}: {czas_rozkladu[produkt]}')
+    else:
+        await ctx.send(f'W bazie nie wyznaczono tego produkta')
+
+@bot.command()
+async def what_make_from(ctx, produkt):
+    objeckt = {
+        'plastik': ['guma do zucia', 'odziez', 'jednorazowe torebki'],
+        'szklo': ['butelki', 'okna', 'szklane wazy'],
+        'metal': ['instrumenty', 'detali']
+    }
+
+    for key, value in objeckt.items():
+        if produkt in value:
+            await ctx.send(f'Z tego {key} otrzymasz:')
+        else:
+            await ctx.send(f'Nie wiem co z otrzymasz')
+
+
+
+
+bot.run('key')

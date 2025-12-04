@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head page</title>
+
+    <style>
+        img{
+           width: 600px;
+           height: 400px;
+           border: 15px solid green;
+        }
+
+        h1{
+            color: green;
+            font-size: 30px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        
+        ul{
+            color: green;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>Hello my friend</h1>
+    <h2>Why you don't learn englesh?</h2>
+    <p>If you don't want so that the Duolingo owl doesn't come for you</p>
+
+    <ol You need make this:>
+        <li>Speak this words 3 times in day: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet deleniti, quidem fugiat facere magnam nulla quasi, explicabo porro dolorem corrupti eveniet esse enim voluptates, a soluta alias numquam voluptatem nostrum.</li>
+        <li>Learn Englesh</li>
+        <li>And don't forget this</li>
+    </ol>
+
+    <p>But if you don't do this</p>
+    <p>The same thing will happen to you as happened to this guy</p>
+
+    <img src="/images/mem1.png">
+
+</body>
+</html>

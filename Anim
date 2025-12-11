@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head page</title>    
+    <style>
+        h1 {animation: color-change 3s infinite;}
+        @keyframes color-change {
+            0%   { color: white; }
+            50%  { color: rgb(209, 18, 18); }
+            100% { color: white; }
+}
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            animation: back 3s 9s forwards 1 ;
+        }
+
+        span{
+            width: 500px;
+            height: 500px;
+            justify-self: center;
+            align-items: center;
+            background-color: coral;
+            color: coral;
+            animation: semle1 9s 1 forwards;
+            text-align: center;
+        }
+
+        @keyframes semle1{
+            0%{ 
+                transform: rotateY(0) translate(0);
+            }
+            33%{ 
+                transform: rotateY(2turn) translate(-700px, -100px) ;
+            }
+            66%{
+                transform: translate(500px, -100px);
+                border-radius: 100px;
+                font-size: 50px;
+                font-family: unset;
+                color: floralwhite;
+                background-color: forestgreen;
+            }
+            100%{
+                transform: translate(0);
+                border-radius: 250px;
+                border: 5px solid black;
+                color: black;
+                font-size: 30px;
+                background-color: gray;
+                font-family: 'Hurricane', cursive;
+            }
+        }
+
+        @keyframes back{
+                0%{
+                    background: white;
+                }
+                50%{
+                    background: url(../images/Image20251211172540.jpg);
+                    background-position: bottom center;
+                    background-size: cover;
+                }
+                100%{
+                    background: url(../images/Image20251211172540.jpg);
+                    background-position: center center;
+                    background-size: cover;
+                }
+            }
+        
+    </style>
+</head>
+<body>
+    <span id='sapn'>
+        <h1>Witaj na mojej stronie</h1>
+    </span>
+        
+</body>
+</html>
